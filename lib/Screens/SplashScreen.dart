@@ -1,6 +1,6 @@
 
 import 'package:flutter/material.dart';
-import 'package:pimpalgaonthote/Auth/otpGenerated.dart';
+import 'package:pimpalgaonthote/Auth/AuthWrapper.dart';
 import 'package:pimpalgaonthote/core/Theme/Colors.dart';
 
 
@@ -18,7 +18,7 @@ class _SplashScreenState extends State<SplashScreen> {
     super.initState();
 
    Future.delayed(Duration(seconds: 3),(){
-     Navigator.pushReplacement(context, MaterialPageRoute(builder: (_)=>PhoneScreen()));
+     Navigator.pushReplacement(context, MaterialPageRoute(builder: (_)=>AuthWrapper()));
    });
   }
 

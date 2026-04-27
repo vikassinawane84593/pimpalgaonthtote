@@ -17,15 +17,23 @@ class AppTheme {
         color: AppColour.textPrimary,
       ),
 
+        headlineSmall: TextStyle(
+          fontSize: 20,
+          fontWeight: FontWeight.bold,
+          color: AppColour.text,
+
+
+        ),
+
       titleMedium:TextStyle(
           fontSize: 24,
-          fontWeight: FontWeight.bold
+          fontWeight: FontWeight.bold,
       ),
       titleSmall:TextStyle(
-        fontSize: 12,
-        fontWeight: FontWeight.bold,
-        color: AppColour.text
-    ),
+          fontSize: 12,
+          fontWeight: FontWeight.bold,
+          color: AppColour.text
+      ),
 
 
     ),
@@ -70,5 +78,15 @@ class AppTheme {
 
 
 
+  );
+  static BoxDecoration container = BoxDecoration(
+    color: AppColour.containerbackground,
+    borderRadius: BorderRadius.circular(20),
+    boxShadow: [
+      BoxShadow(
+        color: AppColour.shadowcolour,
+        blurRadius: 8,
+      ),
+    ],
   );
 }

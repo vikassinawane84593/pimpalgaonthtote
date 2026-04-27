@@ -1,11 +1,12 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:pimpalgaonthote/Auth/otpGenerated.dart';
-import 'package:pimpalgaonthote/Auth/verifiotp.dart';
-import 'package:pimpalgaonthote/Screens/SplashScreen.dart';
+import 'package:pimpalgaonthote/Screens/homeScreen.dart';
 import 'package:pimpalgaonthote/core/Theme/apptheme.dart';
 
-void main() {
-  runApp(const MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner:false,
       theme: AppTheme.lightTheme,
-      home: SplashScreen()//PhoneScreen(),
+      home: MAinHomeScreen()//ProfileScreen()//PhoneScreen(),
     );
   }
 }

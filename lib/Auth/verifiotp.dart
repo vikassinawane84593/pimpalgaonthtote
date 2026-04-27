@@ -1,15 +1,18 @@
 import 'dart:async';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:pimpalgaonthote/Screens/homeScreen.dart';
 import 'package:pimpalgaonthote/core/Theme/Colors.dart';
 
 class OtpScreen extends StatefulWidget {
   final String phone;
   final String verificationId;
-
-  const OtpScreen({super.key, required this.phone,required this.verificationId});
+  final int token;
+   OtpScreen({super.key, required this.phone,required this.verificationId,required this.token});
 
   @override
   State<OtpScreen> createState() => _OtpScreenState();
+
 }
 
 class _OtpScreenState extends State<OtpScreen> {
@@ -20,10 +23,17 @@ class _OtpScreenState extends State<OtpScreen> {
   int seconds = 20;
   final _Globalkey=GlobalKey<FormState>();
   Timer? timer;
+  final _auth = FirebaseAuth.instance;
+  String? currentverID;
+  int? curenttoken;
 
   @override
   void initState() {
     super.initState();
+
+    currentverID=widget.verificationId;
+    curenttoken=widget.token;
+
     startTimer();
   }
 
@@ -45,9 +55,33 @@ class _OtpScreenState extends State<OtpScreen> {
   void resendOtp() async {
     setState(() => resendisLoading = true);
 
-    await Future.delayed(Duration(seconds: 2)); // simulate API
+    _auth.verifyPhoneNumber(
 
-    setState(() => resendisLoading = false);
+        phoneNumber: widget.phone,
+        forceResendingToken: curenttoken,
+
+
+        verificationCompleted: (PhoneAuthCredential crediantial){
+          FirebaseAuth.instance.signInWithCredential(crediantial);
+    },
+        verificationFailed: (FirebaseAuthException e){
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('WROMG OTP'))
+      );
+      resendisLoading=false;
+        },
+
+        codeSent: (String verId, int? token){
+          currentverID=verId;
+          curenttoken=token;
+          resendisLoading=false;
+        },
+
+        codeAutoRetrievalTimeout: (String verId){
+
+        });
+
+
 
     startTimer(); // restart timer
   }
@@ -56,15 +90,32 @@ class _OtpScreenState extends State<OtpScreen> {
   void verifyOtp() async {
     if (_Globalkey.currentState!.validate()) {
       setState(() => verifiisLoading = true);
+      try{
 
-      await Future.delayed(Duration(seconds: 2));
+      PhoneAuthCredential credentials=PhoneAuthProvider.credential(
+          verificationId:currentverID!,
+          smsCode: otpController.text
+      );
 
+      await FirebaseAuth.instance.signInWithCredential(credentials);
       setState(() => verifiisLoading = false);
 
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text("OTP Verified")),
+        SnackBar(content: Text("OTP Verifie/")),
       );
+
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (_)=>HomeScreen()));
     }
+    catch(e){
+      setState(() => verifiisLoading = false);
+
+
+      ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('errpr'))
+        );
+      }
+    }
+
   }
 
   @override
@@ -182,7 +233,7 @@ class _OtpScreenState extends State<OtpScreen> {
                             color: Colors.white,
                           ),
                         )
-                            : Text("Resend OTP"),
+                            : Text("Resend OTP",style: Theme.of(context).textTheme.titleSmall,),
                       ),
             
                       SizedBox(height: 20),

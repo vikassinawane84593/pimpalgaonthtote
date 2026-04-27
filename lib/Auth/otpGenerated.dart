@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:pimpalgaonthote/Auth/verifiotp.dart';
+import 'package:pimpalgaonthote/Screens/homeScreen.dart';
 import 'package:pimpalgaonthote/core/Theme/Colors.dart';
 
 
@@ -16,33 +17,44 @@ class _PhoneScreenState extends State<PhoneScreen> {
   final _Gloabelkey=GlobalKey<FormState>();
   final FirebaseAuth _auth = FirebaseAuth.instance;
   String? verificationId;
+  int? resendtoken;
 
   
-  void sendOtp() async {
+  void sendotp() async {
     if(_Gloabelkey.currentState!.validate()) {
       setState(() => isLoading = true);
 
-      await Future.delayed(Duration(seconds: 2));
       
       _auth.verifyPhoneNumber(
 
-          phoneNumber: "+91${phoneController.text}",
+          phoneNumber: "+91${phoneController.text.trim()}",
 
-          verificationCompleted: (PhoneAuthCredential credential)async{
+          verificationCompleted: (PhoneAuthCredential credential)async {
             await FirebaseAuth.instance.signInWithCredential(credential);
+
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(builder: (context) => HomeScreen()),
+            );
           }
+
           , verificationFailed: (FirebaseAuthException e) {
+        setState(() => isLoading = false);
         ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text('$e')));
+                SnackBar(content: Text('$e')));
       },
-          codeSent: (String verId, int? resendotp){
+
+          codeSent: (String verId, int? token){
             verificationId = verId;
+            resendtoken=token;
+            setState(() => isLoading = false);
             Navigator.push(
                 context,
                 MaterialPageRoute(
                     builder: (context) =>
-                        OtpScreen(phone: phoneController.text, verificationId: verId)
-                ));// ✅ SAVE THIS
+                        OtpScreen(phone: phoneController.text, verificationId: verificationId!, token: resendtoken!)
+                )
+            );
           },
 
           codeAutoRetrievalTimeout: (String verId){
@@ -51,7 +63,6 @@ class _PhoneScreenState extends State<PhoneScreen> {
       
       // simulate API
 
-      setState(() => isLoading = false);
     }
   }
 
@@ -135,7 +146,7 @@ class _PhoneScreenState extends State<PhoneScreen> {
                     width: double.infinity,
                     height: 50,
                     child: ElevatedButton(
-                      onPressed: isLoading ? null : sendOtp,
+                      onPressed: isLoading ? null : sendotp,
                       style: Theme.of(context).elevatedButtonTheme.style,
                       child: isLoading
                           ? SizedBox(
