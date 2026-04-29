@@ -28,6 +28,7 @@ class AppTheme {
       titleMedium:TextStyle(
           fontSize: 24,
           fontWeight: FontWeight.bold,
+        color: AppColour.textPrimary
       ),
       titleSmall:TextStyle(
           fontSize: 12,
@@ -40,13 +41,23 @@ class AppTheme {
 
 
 
-    appBarTheme:  AppBarTheme(
 
-      backgroundColor: AppColour.primary,
-      foregroundColor: Colors.white,
-      elevation: 0,
-      centerTitle: true,
-    ),
+      appBarTheme:  AppBarTheme(
+        backgroundColor: Colors.white,
+        elevation: 0,
+        centerTitle: true,
+
+        titleTextStyle: TextStyle(
+          color:AppColour.textScondary,
+          fontSize: 25,
+          fontWeight: FontWeight.w600,
+        ),
+
+        iconTheme: IconThemeData(
+          color: Colors.black,
+        ),
+      ),
+
 
     inputDecorationTheme: InputDecorationTheme(
       filled: true,
@@ -81,11 +92,12 @@ class AppTheme {
   );
   static BoxDecoration container = BoxDecoration(
     color: AppColour.containerbackground,
-    borderRadius: BorderRadius.circular(20),
+    borderRadius: BorderRadius.circular(30),
     boxShadow: [
       BoxShadow(
-        color: AppColour.shadowcolour,
-        blurRadius: 8,
+        color:AppColour.shadowcolour,
+        blurRadius: 2,
+          offset: Offset(0,0)
       ),
     ],
   );

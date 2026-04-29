@@ -12,7 +12,7 @@ class AppColour {
   static Color loginbox=Color(0xFF849F8D);
   static Color shadowcolour=Colors.black87;
   static  Color containerbackground = Colors.white;
-  static  Color textScondary =Colors.black;
+  static  Color textScondary =Color(0xFF366145);
   static  Color iconcolour = Color(0xFF57AC73);
   static  Color iconbackgroundcolour = Color(0xFFDCF6E5);
 

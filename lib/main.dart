@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:pimpalgaonthote/Screens/homeScreen.dart';
+import 'package:pimpalgaonthote/Screens/main_navigation.dart';
 import 'package:pimpalgaonthote/core/Theme/apptheme.dart';
 
 void main() async {
@@ -17,7 +18,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner:false,
       theme: AppTheme.lightTheme,
-      home: MAinHomeScreen()//ProfileScreen()//PhoneScreen(),
+      home: Mainnavigation()//ProfileScreen()//PhoneScreen(),
     );
   }
 }
