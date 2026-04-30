@@ -30,11 +30,11 @@ class AppTheme {
           fontWeight: FontWeight.bold,
         color: AppColour.textPrimary
       ),
-      titleSmall:TextStyle(
-          fontSize: 12,
-          fontWeight: FontWeight.bold,
-          color: AppColour.text
-      ),
+      titleSmall: TextStyle(
+        fontSize: 18,
+        fontWeight: FontWeight.bold,
+        color: AppColour.text
+    ),
 
 
     ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pimpalgaonthote/core/Theme/Colors.dart';
 import 'package:pimpalgaonthote/core/Theme/apptheme.dart';
+import 'package:pimpalgaonthote/core/Widgets.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -155,62 +156,122 @@ class _HomeScreenState extends State<HomeScreen> {
               child: Text(
                 'जलद सेवा',
                 textAlign: TextAlign.start,
-                style: TextStyle(
-                 fontSize: 18,
-                 fontWeight: FontWeight.bold,
-                 color: AppColour.text
-                ),
+                style: Theme.of(context).textTheme.titleSmall
               ),
             ),
           ),
 
           Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.only(top: 8,right: 15,left: 15),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                Container(
-                  padding: EdgeInsetsGeometry.only(top: 10),
-                  alignment: Alignment.topCenter,
-                  width: 90,
-                  height: 110,
-                  decoration:AppTheme.container.copyWith(borderRadius: BorderRadius.circular(10),),
-                  child: Column(
-                    children: [
-                      Container(
-                        width:50 ,
-                        height: 50,
-                        decoration: AppTheme.container.copyWith(
-                          color:Color(0xFF98C5EA),
-                          boxShadow: [],
-                          borderRadius: BorderRadius.circular(9)
-                        ),
-                        child: Icon(
-                          Icons.newspaper_outlined,size: 34,
-                        ),
-
-                      ),
-                      
-                      Padding(
-                        padding: const EdgeInsetsGeometry.only(top: 4),
-                        child: Text(
-                          'News',
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold
-                          ),
-                        ),
-                      ),
-                      
-                      Text('Latest Update',
-                      style: TextStyle(
-                        fontSize: 10
-                      ),)
-                    ],
-                  ),
-                )
+                JaladSeva(title: 'बातम्या', subtitle: 'ताज्या घडामोडी', icon: Icons.newspaper_sharp, colour: Color(0xFFE0EDE5,),iconcolour: Color(0xFF3F8551,)),
+                
+                SizedBox(width: 10,),
+                
+                JaladSeva(title: 'तक्रार', subtitle: 'समस्या नोंदवा', icon: Icons.warning_amber_rounded, colour:Color(0xFFE4D8D1,) , iconcolour: Color(0xFFCC7B43,)),
+                
+                SizedBox(width: 10),
+                
+                JaladSeva(title: 'सेवा', subtitle: 'सर्व सेवा', icon: Icons.groups, colour:  Color(0xFFE0EDE5,), iconcolour: Color(0xFF3F8551,)),
+                
+                SizedBox(width: 10,),
+                
+                JaladSeva(title: 'निर्देशिका', subtitle: 'महत्त्वाचे संपर्क', icon: Icons.perm_contact_cal_sharp, colour: Color(
+                  0xFFE4EBF1,), iconcolour: Color(0xFF5E9EE4,))
+                
               ],
             ),
-          )
+          ),
+          
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.only(top: 20),
+              child: Container(
+                margin: EdgeInsetsGeometry.only(left: 14),
+
+                width: double.infinity,
+                decoration: AppTheme.container.copyWith(borderRadius: BorderRadius.circular(10)),
+
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(left: 8,top: 6,bottom: 10),
+                          child: Text(
+                            'ताज्या घडामोडी',
+                            style: Theme.of(context).textTheme.titleSmall,
+                          ),
+                        ),
+                  
+                        //customWidget
+                        Row(
+                          children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 10,right: 20),
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(10),
+                                    child: Image.asset(
+                                      'Assets/watercunstruction.png',
+                                      height: 120,
+                                      width: 110,
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
+                                ),
+                  
+                                Expanded(
+                                  child: Column(
+
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      SizedBox(
+                                        height:30,
+                                        width: 105,
+                                        child: Chip(
+                                          backgroundColor: Color(0xFFBEECD0,),
+                                          label: Text(
+                                            'पाणीपुरवठा',
+                                            style: TextStyle(
+                                              color: Color(0xFF3F875C,)
+                                            ),
+                                            textAlign: TextAlign.start,
+                                          ),
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.circular(20)
+                                          ),
+
+                                        ),
+                                      ),
+
+                                      SizedBox(height: 10,),
+
+                                      Text(
+                                        'काही भागांमध्ये पाणीपुरवठ्याची समस्या आहे',
+                                        style: Theme.of(context).textTheme.titleSmall!.copyWith(fontSize: 14),
+                                        softWrap: true,
+                                      ),
+                                      Text(
+                                        'देखभाल कामामुळे सकाळी 10:00 ते दुपारी 2:00 पर्यंत पाणीपुरवठा बंद राहीले',
+                                        softWrap: true,
+                                      )
+                                    ],
+                                  ),
+                                )
+                  
+                  
+                              ],
+                            ),
+                          ],
+                        ),
+                )
+
+                  ),
+                ),
+
+          
+
 
 
         ],
