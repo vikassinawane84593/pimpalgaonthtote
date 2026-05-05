@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:pimpalgaonthote/core/Theme/Colors.dart';
 import 'package:pimpalgaonthote/core/Theme/apptheme.dart';
 import 'package:pimpalgaonthote/core/Widgets.dart';
+import 'package:pimpalgaonthote/data.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -189,7 +190,7 @@ class _HomeScreenState extends State<HomeScreen> {
             child: Padding(
               padding: const EdgeInsets.only(top: 20),
               child: Container(
-                margin: EdgeInsetsGeometry.only(left: 14),
+                margin: EdgeInsetsGeometry.only(left: 14,right: 14),
 
                 width: double.infinity,
                 decoration: AppTheme.container.copyWith(borderRadius: BorderRadius.circular(10)),
@@ -204,65 +205,20 @@ class _HomeScreenState extends State<HomeScreen> {
                             style: Theme.of(context).textTheme.titleSmall,
                           ),
                         ),
-                  
-                        //customWidget
-                        Row(
-                          children: [
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 10,right: 20),
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(10),
-                                    child: Image.asset(
-                                      'Assets/watercunstruction.png',
-                                      height: 120,
-                                      width: 110,
-                                      fit: BoxFit.cover,
-                                    ),
-                                  ),
-                                ),
-                  
-                                Expanded(
-                                  child: Column(
 
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      SizedBox(
-                                        height:30,
-                                        width: 105,
-                                        child: Chip(
-                                          backgroundColor: Color(0xFFBEECD0,),
-                                          label: Text(
-                                            'पाणीपुरवठा',
-                                            style: TextStyle(
-                                              color: Color(0xFF3F875C,)
-                                            ),
-                                            textAlign: TextAlign.start,
-                                          ),
-                                          shape: RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.circular(20)
-                                          ),
+                        Expanded(
+                          child: ListView.builder(
+                            itemCount: data.length,
+                              itemBuilder: (contex ,index ){
+                              return Latestnews(
+                                  chiptitle: data[index]['chiptitle'],
+                                  title: data[index]['title'],
+                                  info: data[index]['info'],
+                                  time: data[index]['time'],
+                                  imagepath: data[index]['imagepath']);
 
-                                        ),
-                                      ),
-
-                                      SizedBox(height: 10,),
-
-                                      Text(
-                                        'काही भागांमध्ये पाणीपुरवठ्याची समस्या आहे',
-                                        style: Theme.of(context).textTheme.titleSmall!.copyWith(fontSize: 14),
-                                        softWrap: true,
-                                      ),
-                                      Text(
-                                        'देखभाल कामामुळे सकाळी 10:00 ते दुपारी 2:00 पर्यंत पाणीपुरवठा बंद राहीले',
-                                        softWrap: true,
-                                      )
-                                    ],
-                                  ),
-                                )
-                  
-                  
-                              ],
-                            ),
+                              }),
+                        )
                           ],
                         ),
                 )

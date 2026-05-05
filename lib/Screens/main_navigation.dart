@@ -10,17 +10,21 @@ class Mainnavigation extends StatefulWidget {
 }
 
 class _MainnavigationState extends State<Mainnavigation> {
-  int index=0;
+  int Index=0;
   final List<Widget> _widgets=[HomeScreen(),ProfileScreen()];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _widgets[index],
+      body:IndexedStack(
+        index: Index,
+        children: _widgets,
+      ),
       bottomNavigationBar: BottomNavigationBar(
-          currentIndex: index,
+          currentIndex: Index,
+          selectedItemColor: Colors.white,
           onTap: (value){
             setState(() {
-              index=value;
+              Index=value;
             });
           },
           items: [

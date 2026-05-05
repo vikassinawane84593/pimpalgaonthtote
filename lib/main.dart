@@ -1,8 +1,9 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:pimpalgaonthote/Screens/homeScreen.dart';
-import 'package:pimpalgaonthote/Screens/main_navigation.dart';
+import 'package:pimpalgaonthote/Screens/profileScreen.dart';
 import 'package:pimpalgaonthote/core/Theme/apptheme.dart';
+import 'package:pimpalgaonthote/tester.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -18,7 +19,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner:false,
       theme: AppTheme.lightTheme,
-      home: Mainnavigation()//ProfileScreen()//PhoneScreen(),
+      home: Tester()//ProfileScreen()//PhoneScreen(),
     );
   }
 }
