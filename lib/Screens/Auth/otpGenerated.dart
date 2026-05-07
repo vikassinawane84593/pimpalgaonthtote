@@ -1,16 +1,16 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:pimpalgaonthote/Auth/verifiotp.dart';
+import 'package:pimpalgaonthote/Screens/Auth/verifiotp.dart';
 import 'package:pimpalgaonthote/Screens/homeScreen.dart';
 import 'package:pimpalgaonthote/core/Theme/Colors.dart';
 
 
-class PhoneScreen extends StatefulWidget {
+class Otpgenerated extends StatefulWidget {
   @override
-  State<PhoneScreen> createState() => _PhoneScreenState();
+  State<Otpgenerated> createState() => _OtpgeneratedState();
 }
 
-class _PhoneScreenState extends State<PhoneScreen> {
+class _OtpgeneratedState extends State<Otpgenerated> {
   
   final phoneController = TextEditingController();
   bool isLoading = false;
@@ -36,14 +36,12 @@ class _PhoneScreenState extends State<PhoneScreen> {
               context,
               MaterialPageRoute(builder: (context) => HomeScreen()),
             );
-          }
-
-          , verificationFailed: (FirebaseAuthException e) {
-        setState(() => isLoading = false);
-        ScaffoldMessenger.of(context).showSnackBar(
+          },
+          verificationFailed: (FirebaseAuthException e) {
+            setState(() => isLoading = false);
+            ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(content: Text('$e')));
-      },
-
+            },
           codeSent: (String verId, int? token){
             verificationId = verId;
             resendtoken=token;
@@ -60,8 +58,6 @@ class _PhoneScreenState extends State<PhoneScreen> {
           codeAutoRetrievalTimeout: (String verId){
             verificationId = verId;
           });
-      
-      // simulate API
 
     }
   }

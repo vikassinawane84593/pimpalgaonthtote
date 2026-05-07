@@ -1,6 +1,5 @@
-
 import 'package:flutter/material.dart';
-import 'package:pimpalgaonthote/Auth/AuthWrapper.dart';
+import 'package:pimpalgaonthote/Screens/Auth/AuthWrapper.dart';
 import 'package:pimpalgaonthote/core/Theme/Colors.dart';
 
 

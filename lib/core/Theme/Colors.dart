@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class AppColour {
-  static  Color ScafffolBackgroundcolour = Color(0xFFD1B69E); // deep orange
+  static  Color ScafffolBackgroundcolour = Color(0xFFFFFFFF); // deep orange
   static  Color textPrimary = Color(0xFF44674F); // deep orange
   static  Color primary = Color(0xFFCA7435); // deep orange
   static  Color accent = Colors.orangeAccent;

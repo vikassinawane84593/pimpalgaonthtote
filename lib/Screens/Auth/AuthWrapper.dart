@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:pimpalgaonthote/Auth/verifiotp.dart';
-import '../Screens/homeScreen.dart';
+import 'package:pimpalgaonthote/Screens/homeScreen.dart';
+import 'package:pimpalgaonthote/Screens/main_navigation.dart';
 import 'otpGenerated.dart';
 
 /*class AuthWrapper extends StatelessWidget {
@@ -45,13 +45,13 @@ class AuthWrapper extends StatelessWidget {
           }
 
           if(snapshot.hasData){
-            print('vikas is developer /////${FirebaseAuth.instance.authStateChanges()}');
+            print('vikas is developer ${FirebaseAuth.instance.authStateChanges()}');
 
-            return HomeScreen();
+            return Mainnavigation();
 
           }
 
-          return PhoneScreen();
+          return Otpgenerated();
         }
     );
   }

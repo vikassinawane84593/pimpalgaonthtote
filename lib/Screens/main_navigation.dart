@@ -11,6 +11,7 @@ class Mainnavigation extends StatefulWidget {
 
 class _MainnavigationState extends State<Mainnavigation> {
   int Index=0;
+  List<Map> bottomitem=[{'label':'Home','icon':Icons.home},{'label':'Profile','icon':Icons.person}];
   final List<Widget> _widgets=[HomeScreen(),ProfileScreen()];
   @override
   Widget build(BuildContext context) {
@@ -27,19 +28,13 @@ class _MainnavigationState extends State<Mainnavigation> {
               Index=value;
             });
           },
-          items: [
-            BottomNavigationBarItem(
-                icon: Icon(Icons.home),
-                label: 'profile'
+          items:bottomitem.map((e){
+            return BottomNavigationBarItem(
+                icon: Icon(e['icon']),
+                label: e['label']);
+          }).toList()
 
-            ),
-
-            BottomNavigationBarItem(
-                icon: Icon(Icons.person),
-                label: 'profile'
-            ),
-
-          ]),
+          ),
     );
   }
 }

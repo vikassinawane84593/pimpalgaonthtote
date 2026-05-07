@@ -51,7 +51,7 @@ class _OtpScreenState extends State<OtpScreen> {
     });
   }
 
-  /// 🔁 Resend OTP
+
   void resendOtp() async {
     setState(() => resendisLoading = true);
 
@@ -86,7 +86,7 @@ class _OtpScreenState extends State<OtpScreen> {
     startTimer(); // restart timer
   }
 
-  /// ✅ Verify OTP
+  ///  Verify OTP
   void verifyOtp() async {
     if (_Globalkey.currentState!.validate()) {
       setState(() => verifiisLoading = true);
@@ -101,7 +101,7 @@ class _OtpScreenState extends State<OtpScreen> {
       setState(() => verifiisLoading = false);
 
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text("OTP Verifie/")),
+        SnackBar(content: Text("OTP Verified")),
       );
 
       Navigator.pushReplacement(context, MaterialPageRoute(builder: (_)=>HomeScreen()));
@@ -111,7 +111,7 @@ class _OtpScreenState extends State<OtpScreen> {
 
 
       ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('errpr'))
+          SnackBar(content: Text('error'))
         );
       }
     }

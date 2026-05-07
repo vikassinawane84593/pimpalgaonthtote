@@ -14,7 +14,7 @@ class ProfileScreen extends StatelessWidget {
         child: Stack(
           children: [
 
-            /// 🔹 Background Image
+            // Background Image
             Container(
               height: 290,
               decoration: const BoxDecoration(
