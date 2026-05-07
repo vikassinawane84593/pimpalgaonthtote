@@ -37,7 +37,7 @@ class _OtpScreenState extends State<OtpScreen> {
     startTimer();
   }
 
-  /// ⏱ Start Timer
+   
   void startTimer() {
     seconds = 20;
 
