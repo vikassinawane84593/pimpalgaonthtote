@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:pimpalgaonthote/core/Theme/Colors.dart';
 import 'package:pimpalgaonthote/core/Theme/apptheme.dart';
-import 'package:pimpalgaonthote/core/Widgets.dart';
+import 'package:pimpalgaonthote/core/Widgets/Jaladseva.dart';
+import 'package:pimpalgaonthote/core/Widgets/LatestNews.dart';
 import 'package:pimpalgaonthote/data.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -12,6 +13,9 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  Future<void> pickimage() async {
+
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(

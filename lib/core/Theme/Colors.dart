@@ -13,8 +13,13 @@ class AppColour {
   static Color shadowcolour=Colors.black87;
   static  Color containerbackground = Colors.white;
   static  Color textScondary =Color(0xFF366145);
-  static  Color iconcolour = Color(0xFF57AC73);
   static  Color iconbackgroundcolour = Color(0xFFDCF6E5);
+  static  Color iconcolour = Color(0xFF65AA76);
+  static  Color Iconbuttoncolour = Color(0xFFA9F3C1);
+  static  Color bottomnavigationcolour   = Color(0xFFE1CCB7);
+
+
+
 
 
 

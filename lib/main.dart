@@ -1,27 +1,36 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:pimpalgaonthote/Screens/Auth/AuthWrapper.dart';
-import 'package:pimpalgaonthote/Screens/Cpmplaintscreen.dart';
+import 'package:hive_ce/hive.dart';
+import 'package:hive_ce_flutter/adapters.dart';
+import 'package:pimpalgaonthote/Screens/News.dart';
 import 'package:pimpalgaonthote/Screens/main_navigation.dart';
+import 'package:pimpalgaonthote/Screens/profile_Screen.dart';
 import 'package:pimpalgaonthote/core/Theme/apptheme.dart';
-import 'package:pimpalgaonthote/tester.dart';
+
 
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
   await Firebase.initializeApp();
+
+  await Hive.initFlutter();
+
+  await Hive.openBox('profile');
+
+  Hive.openBox('profile');
+
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  @override
-  Widget build(BuildContext context) {
+  @override  Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner:false,
       theme: AppTheme.lightTheme,
-      home:ComplaintScreen()///PhoneScreen(),AuthWrapper()
+      home:NewsScreen()//Mainnavigation()///PhoneScreen(),AuthWrapper()
     );
   }
 }

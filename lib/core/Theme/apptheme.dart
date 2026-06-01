@@ -60,18 +60,20 @@ class AppTheme {
 
 
     inputDecorationTheme: InputDecorationTheme(
-      filled: true,
-      fillColor: Colors.white,
-      contentPadding: const EdgeInsets.symmetric(horizontal: 15, vertical: 12),
 
-      border: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(12),
-        borderSide: BorderSide.none,
+      hintStyle: TextStyle(
+        color: Colors.grey,
+        fontWeight: FontWeight.bold
       ),
 
-      focusedBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(12),
-        borderSide:  BorderSide(color: AppColour.primary, width: 2),
+     prefixIconColor: Colors.grey,
+
+      filled: true,
+      fillColor: const Color(0xfff3f3f3),
+
+      border: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(14),
+        borderSide: BorderSide.none,
       ),
     ),
 

@@ -22,14 +22,14 @@ class _OtpgeneratedState extends State<Otpgenerated> {
   
   void sendotp() async {
     if(_Gloabelkey.currentState!.validate()) {
+
       setState(() => isLoading = true);
 
-      
       _auth.verifyPhoneNumber(
 
           phoneNumber: "+91${phoneController.text.trim()}",
 
-          verificationCompleted: (PhoneAuthCredential credential)async {
+          verificationCompleted: (PhoneAuthCredential credential) async {
             await FirebaseAuth.instance.signInWithCredential(credential);
 
             Navigator.pushReplacement(
@@ -37,15 +37,18 @@ class _OtpgeneratedState extends State<Otpgenerated> {
               MaterialPageRoute(builder: (context) => HomeScreen()),
             );
           },
+
           verificationFailed: (FirebaseAuthException e) {
             setState(() => isLoading = false);
             ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(content: Text('$e')));
             },
+
           codeSent: (String verId, int? token){
             verificationId = verId;
             resendtoken=token;
             setState(() => isLoading = false);
+
             Navigator.push(
                 context,
                 MaterialPageRoute(
