@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:pimpalgaonthote/core/Theme/apptheme.dart';
 
 class NewsScreen extends StatelessWidget {
   const NewsScreen({super.key});
@@ -7,34 +6,36 @@ class NewsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
+        appBar: AppBar(
 
-        title: Text('ग्रामवार्ता'),
+          title: Text('ग्रामवार्ता'),
 
-      ),
+        ),
 
-      body: Column(
-        children: [
-          Padding(
-            
-            padding: const EdgeInsets.all(8.0),
-            
-            child: Card(
-              
-              elevation: 4,
-              
-              child: TextFormField(
-                
-                decoration: InputDecoration(
-                  hintText: 'बातम्या शोधा...',
-                  prefixIcon: Icon(Icons.search)
-                )
+        body:Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Card(
 
+                  elevation: 4,
+
+                  child: TextFormField(
+
+                    decoration: InputDecoration(
+                      hintText: 'बातम्या शोधा...',
+                      prefixIcon: Icon(Icons.search),
+                    ),
+
+
+
+                  ),
+                ),
               ),
-            ),
-          )
-        ],
-      ),
+
+
+            ]
+        )
     );
   }
 }

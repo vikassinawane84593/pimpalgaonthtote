@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:pimpalgaonthote/core/Theme/Colors.dart';
 
 class BuildTile extends StatelessWidget {
-  IconData icon;
-  String  title;
-  String value;
+  final IconData icon;
+  final String  title;
+  final String value;
 
-   BuildTile({
+   const BuildTile({
 
      super.key,
      required this.icon,

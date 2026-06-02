@@ -2,8 +2,8 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:pimpalgaonthote/core/Theme/Colors.dart';
 import 'package:pimpalgaonthote/core/Theme/apptheme.dart';
-import 'package:pimpalgaonthote/core/Widgets/buildDivider.dart';
-import 'package:pimpalgaonthote/core/Widgets/buildTile.dart';
+import 'package:pimpalgaonthote/core/Widgets/build_Tile.dart';
+import 'package:pimpalgaonthote/core/Widgets/build_divider.dart';
 import 'package:pimpalgaonthote/servieces/image_picker_servise.dart';
 import 'package:pimpalgaonthote/servieces/profile_servise.dart';
 

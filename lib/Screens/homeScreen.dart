@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:pimpalgaonthote/core/Theme/Colors.dart';
 import 'package:pimpalgaonthote/core/Theme/apptheme.dart';
-import 'package:pimpalgaonthote/core/Widgets/Jaladseva.dart';
-import 'package:pimpalgaonthote/core/Widgets/LatestNews.dart';
+import 'package:pimpalgaonthote/core/Widgets/Jalad_seva.dart';
+import 'package:pimpalgaonthote/core/Widgets/latest_news.dart';
 import 'package:pimpalgaonthote/data.dart';
 
 class HomeScreen extends StatefulWidget {
