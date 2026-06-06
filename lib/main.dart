@@ -1,10 +1,13 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:hive_ce/hive.dart';
 import 'package:hive_ce_flutter/adapters.dart';
 import 'package:pimpalgaonthote/Screens/News.dart';
+import 'package:pimpalgaonthote/Screens/contact_Screen.dart';
+import 'package:pimpalgaonthote/Screens/homeScreen.dart';
 import 'package:pimpalgaonthote/Screens/main_navigation.dart';
 import 'package:pimpalgaonthote/Screens/profile_Screen.dart';
+import 'package:pimpalgaonthote/Screens/village_gallary.dart';
+import 'package:pimpalgaonthote/Screens/village_official.dart';
 import 'package:pimpalgaonthote/core/Theme/apptheme.dart';
 
 
@@ -30,7 +33,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner:false,
       theme: AppTheme.lightTheme,
-      home:NewsScreen()//Mainnavigation()///PhoneScreen(),AuthWrapper()
+      home:Gridv()//ContactScreen()//HomeScreen()//()//Mainnavigation()///PhoneScreen(),AuthWrapper()
     );
   }
 }
