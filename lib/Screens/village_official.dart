@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:pimpalgaonthote/core/Widgets/contact_widget.dart';
 import 'package:pimpalgaonthote/core/Widgets/village_official_widget.dart';
+import 'package:pimpalgaonthote/data.dart';
 
 class Vilageofficial extends StatefulWidget {
   const Vilageofficial({super.key});
@@ -25,7 +25,9 @@ class _VilageofficialState extends State<Vilageofficial> {
                     fontSize: 15,
                     color: Colors.black87
                 ),
-              )
+              ),
+
+
             ],
           ),
           centerTitle: true,
@@ -62,11 +64,30 @@ class _VilageofficialState extends State<Vilageofficial> {
                   ),
 
 
+
+
                 ),
 
 
                                 
               ),
+
+              Expanded(
+                child: ListView.builder(
+                    itemCount: grampanchyatdata.length,
+                    itemBuilder: (contex ,index ){
+                      return OfficialCard(
+
+                          imageUrl:  'https://picsum.photos/300/30$index',
+                          name: grampanchyatdata[index]['name'],
+                          post: grampanchyatdata[index]['post'],
+                          department: grampanchyatdata[index]['department'],
+                          onCall: (){}
+
+                      );
+
+                    }),
+              )
 
 
             ]

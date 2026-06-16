@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:pimpalgaonthote/Screens/Cpmplaintscreen.dart';
 import 'package:pimpalgaonthote/Screens/homeScreen.dart';
 import 'package:pimpalgaonthote/Screens/profile_Screen.dart';
+import 'package:pimpalgaonthote/Screens/village_gallary.dart';
+import 'package:pimpalgaonthote/Screens/village_official.dart';
 import 'package:pimpalgaonthote/core/Theme/Colors.dart';
 
 class Mainnavigation extends StatefulWidget {
@@ -17,11 +19,29 @@ class _MainnavigationState extends State<Mainnavigation> {
   List<Map> bottomitem=[
 
     {'label':'Home','icon':Icons.home},
-    {'label':'Complainy','icon':Icons.warning_amber},
+
+    {'label':'Complaint','icon':Icons.warning_amber},
+
+
+    {'label':'Gallary','icon':Icons.image},
+
     {'label':'Profile','icon':Icons.person},
+
+
+
   ];
 
-  final List<Widget> _widgets=[HomeScreen(),ComplaintScreen(),ProfileScreen()];
+  final List<Widget> _widgets=[
+    HomeScreen(),
+
+
+    ComplaintScreen(),
+
+    VillageGallary(),
+
+    ProfileScreen()
+
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -57,8 +77,10 @@ class _MainnavigationState extends State<Mainnavigation> {
                     label: element['label'],
 
                     selectedIcon: Icon(
-                        element['icon'],
+                      element['icon'],
+
                       size: 40,
+
                       color: AppColour.iconcolour,
                     ),
 

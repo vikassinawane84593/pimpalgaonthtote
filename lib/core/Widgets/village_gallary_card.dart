@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 
-class GalleryCard extends StatelessWidget {
+class Villagegallarycard extends StatelessWidget {
   final String imageUrl;
   final String title;
   final VoidCallback? onTap;
 
-  const GalleryCard({
+  const Villagegallarycard({
     super.key,
     required this.imageUrl,
     required this.title,
-    this.onTap,
+    required this.onTap,
   });
 
   @override

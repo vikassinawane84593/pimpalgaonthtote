@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner:false,
       theme: AppTheme.lightTheme,
-      home:Gridv()//ContactScreen()//HomeScreen()//()//Mainnavigation()///PhoneScreen(),AuthWrapper()
+      home:Mainnavigation()//ContactScreen()//HomeScreen()//()//Mainnavigation()///PhoneScreen(),AuthWrapper()
     );
   }
 }

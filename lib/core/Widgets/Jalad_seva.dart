@@ -7,6 +7,8 @@ class JaladSeva extends StatelessWidget {
   final IconData icon;
   final Color colour;
   final Color iconcolour;
+  final VoidCallback Ontap;
+
 
   const JaladSeva({
     super.key,
@@ -14,48 +16,55 @@ class JaladSeva extends StatelessWidget {
     required this.subtitle,
     required this.icon,
     required this.colour,
-    required this.iconcolour
+    required this.iconcolour,
+    required this.Ontap
   });
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsetsGeometry.only(top: 10),
-      alignment: Alignment.topCenter,
-      width: 81,
-      height: 110,
-      decoration:AppTheme.container.copyWith(borderRadius: BorderRadius.circular(10),),
-      child: Column(
-        children: [
-          Container(
-            width:50 ,
-            height: 50,
-            decoration: AppTheme.container.copyWith(
-                color:colour,
-                boxShadow: [],
-                borderRadius: BorderRadius.circular(9)
-            ),
-            child: Icon(
-              icon,size: 34,
-              color: iconcolour,
+    return InkWell(
+      onTap: Ontap,
+      child: Container(
+        padding: EdgeInsetsGeometry.only(top: 10),
+        alignment: Alignment.topCenter,
+        width: 81,
+        height: 110,
+        decoration:AppTheme.container.copyWith(borderRadius: BorderRadius.circular(10),),
+        child: Column(
+          children: [
+            Container(
+              width:50 ,
+              height: 50,
+              decoration: AppTheme.container.copyWith(
+                  color:colour,
+                  boxShadow: [],
+                  borderRadius: BorderRadius.circular(9)
+              ),
+              child: Icon(
+
+                icon,size: 34,
+
+                color: iconcolour,
+
+              ),
+
             ),
 
-          ),
-
-          Padding(
-            padding: const EdgeInsetsGeometry.only(top: 4),
-            child: Text(
-              title,
-              style: TextStyle(
-                  fontWeight: FontWeight.bold
+            Padding(
+              padding: const EdgeInsetsGeometry.only(top: 4),
+              child: Text(
+                title,
+                style: TextStyle(
+                    fontWeight: FontWeight.bold
+                ),
               ),
             ),
-          ),
 
-          Text(subtitle,
-            style: TextStyle(
-                fontSize: 10
-            ),)
-        ],
+            Text(subtitle,
+              style: TextStyle(
+                  fontSize: 10
+              ),)
+          ],
+        ),
       ),
     );
   }

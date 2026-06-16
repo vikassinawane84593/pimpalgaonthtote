@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:pimpalgaonthote/Screens/Cpmplaintscreen.dart';
+import 'package:pimpalgaonthote/Screens/News.dart';
+import 'package:pimpalgaonthote/Screens/contact_Screen.dart';
+import 'package:pimpalgaonthote/Screens/village_gallary.dart';
+import 'package:pimpalgaonthote/Screens/village_official.dart';
 import 'package:pimpalgaonthote/core/Theme/Colors.dart';
 import 'package:pimpalgaonthote/core/Theme/apptheme.dart';
 import 'package:pimpalgaonthote/core/Widgets/Jalad_seva.dart';
-import 'package:pimpalgaonthote/core/Widgets/latest_news.dart';
+import 'package:pimpalgaonthote/core/Widgets/village_official_widget.dart';
 import 'package:pimpalgaonthote/data.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -13,9 +18,8 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  Future<void> pickimage() async {
+  int notificationcount = 5;
 
-  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,23 +28,72 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(
 
         title: Column(
+
           children: [
+
             Text(
               'पिंपळगांव थोटे',
             ),
+
             Text(
               'आपण मिळून अधिक चांगलं गाव घडवतो',
                 style: TextStyle(
+
                   fontSize: 15,
+
                   color: Colors.black
                 ),
             ),
           ],
         ),
         actions: [
-          Padding(
-            padding: EdgeInsetsGeometry.only(right: 8),
-            child: Icon(Icons.notifications_none_outlined),
+
+          Stack(
+
+            children:[
+
+              Padding(
+
+              padding: EdgeInsetsGeometry.only(right: 8),
+
+              child: IconButton(
+
+                onPressed: (){
+                  setState(() {
+                    setState(() {
+                      notificationcount=0;
+                    });
+                  });
+                },
+
+                icon:Icon(Icons.notifications_none_outlined,
+
+                size: 34,
+              ),
+            ),
+              ),
+
+              if(notificationcount>0)
+
+              Positioned(
+                right: 14,
+                top: 0,
+
+                child: Container(
+                  height: 19,
+                  width: 19,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: Colors.red,
+                  ),
+                  child: Center(
+                    child: Text(
+                        '$notificationcount',
+                    ),
+                  ),
+                ),
+              )
+            ]
           )
         ],
       ),
@@ -171,20 +224,64 @@ class _HomeScreenState extends State<HomeScreen> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                JaladSeva(title: 'बातम्या', subtitle: 'ताज्या घडामोडी', icon: Icons.newspaper_sharp, colour: Color(0xFFE0EDE5,),iconcolour: Color(0xFF3F8551,)),
+                JaladSeva(
+                    title: 'बातम्या',
+                    subtitle: 'ताज्या घडामोडी',
+                    icon: Icons.newspaper_sharp,
+                    colour: Color(0xFFE0EDE5,),
+                    iconcolour: Color(0xFF3F8551,),
+                  Ontap: (){
+                      Navigator.push(context, MaterialPageRoute(
+                          builder: (_)=>NewsScreen()
+                      ));
+                  },
+                ),
                 
                 SizedBox(width: 10,),
                 
-                JaladSeva(title: 'तक्रार', subtitle: 'समस्या नोंदवा', icon: Icons.warning_amber_rounded, colour:Color(0xFFE4D8D1,) , iconcolour: Color(0xFFCC7B43,)),
+                JaladSeva(
+                    title: 'तक्रार',
+                    subtitle: 'समस्या नोंदवा',
+                    icon: Icons.warning_amber_rounded,
+                    colour:Color(0xFFE4D8D1,)
+                    , iconcolour: Color(0xFFCC7B43,),
+                  Ontap: (){
+                      Navigator.push(context, MaterialPageRoute(
+                          builder: (_)=>ComplaintScreen()
+                      ));
+                  },
+                ),
                 
                 SizedBox(width: 10),
                 
-                JaladSeva(title: 'सेवा', subtitle: 'सर्व सेवा', icon: Icons.groups, colour:  Color(0xFFE0EDE5,), iconcolour: Color(0xFF3F8551,)),
+                JaladSeva(
+                    title: 'गॅलरी',
+                    subtitle: 'गावातील क्षण',
+                    icon: Icons.image,
+                    colour:  Color(0xFFE0EDE5,),
+                    iconcolour: Color(0xFF3F8551,),
+                  Ontap: (){
+
+                      Navigator.push(context, MaterialPageRoute(
+                          builder: (_)=>VillageGallary()));
+
+                  },
+                ),
                 
                 SizedBox(width: 10,),
                 
-                JaladSeva(title: 'निर्देशिका', subtitle: 'महत्त्वाचे संपर्क', icon: Icons.perm_contact_cal_sharp, colour: Color(
-                  0xFFE4EBF1,), iconcolour: Color(0xFF5E9EE4,))
+                JaladSeva(
+                    title: 'निर्देशिका',
+                    subtitle: 'महत्त्वाचे संपर्क',
+                    icon: Icons.perm_contact_cal_sharp,
+                    colour: Color(
+                  0xFFE4EBF1,), iconcolour: Color(0xFF5E9EE4,),
+                  Ontap: (){
+                      Navigator.push(context, MaterialPageRoute(
+                          builder: (_)=>ContactScreen())
+                      );
+                  },
+                )
                 
               ],
             ),
@@ -204,22 +301,49 @@ class _HomeScreenState extends State<HomeScreen> {
                       children: [
                         Padding(
                           padding: const EdgeInsets.only(left: 8,top: 6,bottom: 10),
-                          child: Text(
-                            'ताज्या घडामोडी',
-                            style: Theme.of(context).textTheme.titleSmall,
+                          child: Row(
+                            children: [
+                              Text(
+                                'ताज्या घडामोडी',
+                                style: Theme.of(context).textTheme.titleSmall,
+                              ),
+
+                              Padding(
+                                padding: EdgeInsetsGeometry.only(left: 120),
+                                child: TextButton(
+
+                                    onPressed: (){
+
+                                      Navigator.push(
+                                          context, MaterialPageRoute(
+                                          builder: (_)=>Vilageofficial()
+                                      ));
+                                    },
+
+                                    child: Text(
+                                        'संपूर्ण माहिती →',
+                                      style: TextStyle(
+                                        color: Colors.orange.shade700
+                                      ),
+                                    )),
+                              )
+                            ],
                           ),
                         ),
 
                         Expanded(
                           child: ListView.builder(
-                            itemCount: data.length,
+                            itemCount: 3,
                               itemBuilder: (contex ,index ){
-                              return Latestnews(
-                                  chiptitle: data[index]['chiptitle'],
-                                  title: data[index]['title'],
-                                  info: data[index]['info'],
-                                  time: data[index]['time'],
-                                  imagepath: data[index]['imagepath']);
+                              return OfficialCard(
+
+                                  imageUrl:  'https://picsum.photos/300/30$index',
+                                  name: grampanchyatdata[index]['name'],
+                                  post: grampanchyatdata[index]['post'],
+                                  department: grampanchyatdata[index]['department'],
+                                  onCall: (){}
+
+                              );
 
                               }),
                         )
