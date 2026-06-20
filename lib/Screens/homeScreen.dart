@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pimpalgaonthote/Screens/Cpmplaintscreen.dart';
-import 'package:pimpalgaonthote/Screens/News.dart';
 import 'package:pimpalgaonthote/Screens/contact_Screen.dart';
+import 'package:pimpalgaonthote/Screens/timetableascreen.dart';
 import 'package:pimpalgaonthote/Screens/village_gallary.dart';
 import 'package:pimpalgaonthote/Screens/village_official.dart';
 import 'package:pimpalgaonthote/core/Theme/Colors.dart';
@@ -225,14 +225,14 @@ class _HomeScreenState extends State<HomeScreen> {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 JaladSeva(
-                    title: 'बातम्या',
-                    subtitle: 'ताज्या घडामोडी',
+                    title: 'वेळापत्रक',
+                    subtitle: 'गावाचे वेळापत्रक',
                     icon: Icons.newspaper_sharp,
                     colour: Color(0xFFE0EDE5,),
                     iconcolour: Color(0xFF3F8551,),
                   Ontap: (){
                       Navigator.push(context, MaterialPageRoute(
-                          builder: (_)=>NewsScreen()
+                          builder: (_)=>TimeTAbleScreen()
                       ));
                   },
                 ),
