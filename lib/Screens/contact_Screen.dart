@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pimpalgaonthote/core/Widgets/contact_widget.dart';
+import 'package:pimpalgaonthote/Widgets/contact_widget.dart';
 
 class ContactScreen extends StatefulWidget {
   const ContactScreen({super.key});

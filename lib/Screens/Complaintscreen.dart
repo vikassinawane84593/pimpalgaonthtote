@@ -1,5 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:pimpalgaonthote/core/Theme/apptheme.dart';
+import 'package:pimpalgaonthote/model/complaintmodel.dart';
 
 class ComplaintScreen extends StatefulWidget {
   const ComplaintScreen({super.key});
@@ -14,11 +17,16 @@ class _ComplaintScreenState extends State<ComplaintScreen> {
   final TextEditingController mobileController = TextEditingController();
   final TextEditingController problemController = TextEditingController();
 
+  bool isloading = false;
+
   void clearcontrooler(){
+
     nameController.clear();
     mobileController.clear();
     problemController.clear();
+
   }
+
 
   String selectedProblem = "इतर";
 
@@ -30,6 +38,59 @@ class _ComplaintScreenState extends State<ComplaintScreen> {
     "इतर",
   ];
   final _Globelkey = GlobalKey<FormState>();
+
+
+
+
+  Future<void>uploadcomplaint() async {
+
+    setState(() {
+      isloading=true;
+    });
+    try {
+
+      ComplaintModel complaintModel = ComplaintModel(
+          name: nameController.text.trim(),
+          mobile:  mobileController.text.trim(),
+          problemType: selectedProblem,
+          problemDescription: problemController.text.trim(),
+          condition: 'pending'
+      );
+
+      await FirebaseFirestore.instance.collection('complaints').add({
+        //'name': nameController.text.trim(),
+        //'mobile': mobileController.text.trim(),
+        //'problemType': selectedProblem,
+        //'problemDescription': problemController.text.trim(),
+        ...complaintModel.toMap(),
+        'timestamp': FieldValue.serverTimestamp(),
+
+      }).timeout(Duration(seconds: 5));
+
+      ScaffoldMessenger.of(context).showSnackBar(
+
+          SnackBar(content: Text('तक्रार यशस्वीरित्या नोंदवली आहे')
+          )
+      );
+
+      clearcontrooler();
+
+    }
+    catch(e){
+        ScaffoldMessenger.of(context).showSnackBar(
+
+
+         SnackBar(content: Text('Error: $e')
+          )
+        );
+
+    }
+    await Future.delayed(Duration(seconds: 3));
+
+    setState(() {
+      isloading=false;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -262,27 +323,32 @@ class _ComplaintScreenState extends State<ComplaintScreen> {
                       ),
                     ),
 
-                    onPressed: () {
+                    onPressed: ! isloading
+                      ?() {
                       if(_Globelkey.currentState!.validate()) {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                            content: Text("तक्रार पाठवली"),
-                          ),
-                        );
-                        clearcontrooler();
+                        uploadcomplaint();
                       }
-                    },
+                    }
+                    :null,
 
-                    child: const Text(
+                    child: !isloading
+                    ?const Text(
                       "तक्रार पाठवा",
                       style: TextStyle(
                         fontSize: 17,
                         fontWeight: FontWeight.bold,
                         color: Colors.white,
                       ),
-                    ),
-                  ),
+                    )
+                        :SizedBox(
+                      height: 20,
+                      width: 20,
+                      child: const CircularProgressIndicator(
+                        color: Colors.black,
+                      ),
+                        ),
                 ),
+                )
               ],
             ),
           ),

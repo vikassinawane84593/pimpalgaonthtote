@@ -5,14 +5,14 @@ import 'package:pimpalgaonthote/servieces/profile_servise.dart';
 
 class ImagePickerServise {
 
-  ProfileServise profileServise = ProfileServise();
+  //ProfileServise profileServise = ProfileServise();
 
   final ImagePicker imagepicker = ImagePicker();
 
   Future <File?> imagePickerFun() async {
 
     final XFile? pickedimage = await imagepicker.pickImage(
-        source: ImageSource.gallery
+        source: ImageSource.gallery,
     );
 
     if(pickedimage != null){

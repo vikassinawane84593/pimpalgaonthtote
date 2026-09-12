@@ -1,7 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_ce_flutter/adapters.dart';
-import 'package:pimpalgaonthote/Screens/Auth/AuthWrapper.dart';
 import 'package:pimpalgaonthote/Screens/Lighttimetable.dart';
 import 'package:pimpalgaonthote/Screens/contact_Screen.dart';
 import 'package:pimpalgaonthote/Screens/homeScreen.dart';
@@ -11,6 +10,9 @@ import 'package:pimpalgaonthote/Screens/timetableascreen.dart';
 import 'package:pimpalgaonthote/Screens/village_gallary.dart';
 import 'package:pimpalgaonthote/Screens/village_official.dart';
 import 'package:pimpalgaonthote/core/Theme/apptheme.dart';
+import 'package:pimpalgaonthote/firebase_options.dart';
+import 'package:pimpalgaonthote/main.dart';
+import 'package:pimpalgaonthote/tester.dart';
 
 
 
@@ -25,6 +27,10 @@ void main() async {
 
   Hive.openBox('profile');
 
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
   runApp(MyApp());
 }
 
@@ -35,7 +41,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner:false,
       theme: AppTheme.lightTheme,
-      home:Lighttimetable()//TimeTAbleScreen()//AuthWrapper()//ContactScreen()//HomeScreen()//()//Mainnavigation()///PhoneScreen(),AuthWrapper()
+      home:HomeScreen()//AuthWrapper()//ContactScreen()//HomeScreen()//()//Mainnavigation()///PhoneScreen(),AuthWrapper()
     );
   }
 }

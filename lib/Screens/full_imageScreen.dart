@@ -36,7 +36,21 @@ class FullImageScreen extends StatelessWidget {
             width: double.infinity,
 
             fit: BoxFit.cover,
-              imageUrl),
+              imageUrl,
+            loadingBuilder: (conext,child,loading){
+              if(loading==null){
+                return child;
+              }
+              return Center(
+                  child: CircularProgressIndicator()
+              );
+            },
+            errorBuilder: (a,b,v){
+              return Center(
+                  child: CircularProgressIndicator()
+              );
+            },
+          ),
         ),
       ),
     );

@@ -1,65 +1,117 @@
-/*import 'dart:io';
-
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
 
-class PickImagePage extends StatefulWidget {
-  const PickImagePage({super.key});
+
+class Tester extends StatelessWidget {
+  const Tester({super.key});
 
   @override
-  State<PickImagePage> createState() => _PickImagePageState();
+  Widget build(BuildContext context) {
+    return const MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: DropdownExample(),
+    );
+  }
 }
 
-class _PickImagePageState extends State<PickImagePage> {
+class DropdownExample extends StatefulWidget {
+  const DropdownExample({super.key});
 
-  File? selectedImage;
+  @override
+  State<DropdownExample> createState() => _DropdownExampleState();
+}
 
-  final ImagePicker picker = ImagePicker();
+class _DropdownExampleState extends State<DropdownExample> {
 
-  Future<void> pickImage() async {
+  String selectedSection = "Home";
 
-    final XFile? image = await picker.pickImage(
-      source: ImageSource.gallery,
-    );
-
-    if (image != null) {
-      setState(() {
-        selectedImage = File(image.path);
-      });
-    }
-  }
+  final List<String> sections = [
+    "Home",
+    "Gallery",
+    "Notice",
+    "Electricity",
+    "Contact",
+  ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Image Picker'),
-      ),
-
-      body: Center(
+      appBar: AppBar(),
+      drawer: Drawer(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
           children: [
 
-            selectedImage != null
-                ? Image.file(
-              selectedImage!,
-              height: 200,
-              width: 200,
-              fit: BoxFit.cover,
-            )
-                : const Text('No Image Selected'),
+            DrawerHeader(
+              child: Column(
+                children: [
+                  Icon(Icons.park,size: 50),
+                  Text(
+                    "पिंपळगाव थोटे",
+                    style: TextStyle(
+                      fontSize: 22,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
 
-            const SizedBox(height: 20),
+                  Text("ग्रामपंचायत"),
 
-            ElevatedButton(
-              onPressed: pickImage,
-              child: const Text('Pick Image'),
+                ],
+              ),
             ),
 
+            ListTile(
+              leading: Icon(Icons.home),
+              title: Text("मुख्य पृष्ठ"),
+              selected: false,
+            ),
+
+            Divider(),
+
+            ListTile(
+              leading: Icon(Icons.chat_bubble_outline),
+              title: Text("तक्रारी"),
+              trailing: Icon(Icons.chevron_right),
+            ),
+            Divider(),
+
+            ListTile(
+              leading: Icon(Icons.image_outlined),
+              title: Text("गॅलरी"),
+              trailing: Icon(Icons.chevron_right),
+            ),
+
+            ListTile(
+              leading: Icon(Icons.calendar_today),
+              title: Text("वेळापत्रक"),
+              trailing: Icon(Icons.chevron_right),
+            ),
+
+            ListTile(
+              leading: Icon(Icons.people_outline),
+              title: Text("पदाधिकारी"),
+              trailing: Icon(Icons.chevron_right),
+            ),
+
+            Divider(),
+
+            ListTile(
+              leading: Icon(Icons.notifications_none),
+              title: Text("सूचना"),
+            ),
+
+            ListTile(
+              leading: Icon(Icons.settings),
+              title: Text("सेटिंग्स"),
+            ),
+
+            Spacer(),
+
+            ListTile(
+              leading: Icon(Icons.logout),
+              title: Text("लॉगआउट"),
+            ),
           ],
         ),
       ),
     );
   }
-}*/
+}

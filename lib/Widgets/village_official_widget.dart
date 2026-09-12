@@ -1,19 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:pimpalgaonthote/model/officialmodel.dart';
 
 class OfficialCard extends StatelessWidget {
-  final String imageUrl;
-  final String name;
-  final String post;
-  final String department;
+  final OfficialModel officialModel;
+  //final String imageUrl;
+  //final String name;
+  //final String post;
+  //final String department;
   final VoidCallback onCall;
 
   const OfficialCard({
     super.key,
-    required this.imageUrl,
-    required this.name,
-    required this.post,
-    required this.department,
+    //required this.imageUrl,
+    //required this.name,
+    //required this.post,
+    //required this.department,
     required this.onCall,
+    required this.officialModel
   });
 
   @override
@@ -29,9 +32,10 @@ class OfficialCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(16),
         boxShadow: const [
           BoxShadow(
-            blurRadius: 8,
+            blurRadius: 20,
             color: Colors.black12,
-            offset: Offset(0, 2),
+            offset: Offset.zero,
+            spreadRadius: 3
           ),
         ],
       ),
@@ -39,7 +43,7 @@ class OfficialCard extends StatelessWidget {
         children: [
           CircleAvatar(
             radius: 38,
-            backgroundImage: NetworkImage(imageUrl),
+            backgroundImage: NetworkImage(officialModel.imageUrl),
           ),
 
           const SizedBox(width: 16),
@@ -49,7 +53,8 @@ class OfficialCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  name,
+                  officialModel.name,
+                 // name,
                   style: const TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
@@ -60,7 +65,7 @@ class OfficialCard extends StatelessWidget {
                 const SizedBox(height: 4),
 
                 Text(
-                  post,
+                  officialModel.post,
                   style: const TextStyle(
                     fontSize: 17,
                     fontWeight: FontWeight.w600,
@@ -70,7 +75,8 @@ class OfficialCard extends StatelessWidget {
                 const SizedBox(height: 4),
 
                 Text(
-                  department,
+                  officialModel.department,
+                  //department,
                   style: TextStyle(
                     color: Colors.grey.shade700,
                   ),

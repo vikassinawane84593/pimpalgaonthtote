@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:pimpalgaonthote/model/gallerymodel.dart';
 
 class Villagegallarycard extends StatelessWidget {
-  final String imageUrl;
-  final String title;
+  //final String imageUrl;
+  //final String title;
   final VoidCallback? onTap;
+  final ImageModel imageModel;
 
   const Villagegallarycard({
     super.key,
-    required this.imageUrl,
-    required this.title,
+    //required this.imageUrl,
+    //required this.title,
     required this.onTap,
+    required this.imageModel,
   });
 
   @override
@@ -31,9 +34,22 @@ class Villagegallarycard extends StatelessWidget {
                   top: Radius.circular(12),
                 ),
                 child: Image.network(
-                  imageUrl,
+                  imageModel.imageUrl,
                   width: double.infinity,
                   fit: BoxFit.cover,
+                  loadingBuilder: (conext,child,loading){
+                    if(loading==null){
+                      return child;
+                    }
+                    return Center(
+                        child: CircularProgressIndicator()
+                    );
+                  },
+                  errorBuilder: (a,b,v){
+                    return Center(
+                        child: CircularProgressIndicator()
+                    );
+                  },
                 ),
               ),
             ),
@@ -41,7 +57,7 @@ class Villagegallarycard extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Text(
-                title,
+                imageModel.caption,
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
                 style: const TextStyle(

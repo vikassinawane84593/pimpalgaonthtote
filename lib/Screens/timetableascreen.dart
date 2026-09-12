@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pimpalgaonthote/Screens/Lighttimetable.dart';
-import 'package:pimpalgaonthote/core/Widgets/timetablewidget.dart';
+import 'package:pimpalgaonthote/Widgets/timetablewidget.dart';
 
 class TimeTAbleScreen extends StatefulWidget{
   const TimeTAbleScreen({super.key});

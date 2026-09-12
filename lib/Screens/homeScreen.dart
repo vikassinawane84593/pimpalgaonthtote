@@ -1,14 +1,16 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:pimpalgaonthote/Screens/Cpmplaintscreen.dart';
+import 'package:pimpalgaonthote/Screens/Complaintscreen.dart';
 import 'package:pimpalgaonthote/Screens/contact_Screen.dart';
 import 'package:pimpalgaonthote/Screens/timetableascreen.dart';
 import 'package:pimpalgaonthote/Screens/village_gallary.dart';
 import 'package:pimpalgaonthote/Screens/village_official.dart';
+import 'package:pimpalgaonthote/Widgets/Jalad_seva.dart';
+import 'package:pimpalgaonthote/Widgets/village_official_widget.dart';
 import 'package:pimpalgaonthote/core/Theme/Colors.dart';
 import 'package:pimpalgaonthote/core/Theme/apptheme.dart';
-import 'package:pimpalgaonthote/core/Widgets/Jalad_seva.dart';
-import 'package:pimpalgaonthote/core/Widgets/village_official_widget.dart';
 import 'package:pimpalgaonthote/data.dart';
+import 'package:pimpalgaonthote/model/officialmodel.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -126,7 +128,8 @@ class _HomeScreenState extends State<HomeScreen> {
                Padding(
                padding: const EdgeInsets.only(right: 16,top: 20),
                  child: Column(
-                   crossAxisAlignment: CrossAxisAlignment.end,                   children: [
+                   crossAxisAlignment: CrossAxisAlignment.end,
+                   children: [
                      Row(
                        mainAxisAlignment: MainAxisAlignment.end,
                        children: [
@@ -261,7 +264,6 @@ class _HomeScreenState extends State<HomeScreen> {
                     colour:  Color(0xFFE0EDE5,),
                     iconcolour: Color(0xFF3F8551,),
                   Ontap: (){
-
                       Navigator.push(context, MaterialPageRoute(
                           builder: (_)=>VillageGallary()));
 
@@ -332,20 +334,31 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
 
                         Expanded(
-                          child: ListView.builder(
-                            itemCount: 3,
-                              itemBuilder: (contex ,index ){
-                              return OfficialCard(
+                          child: StreamBuilder(
+                            stream: FirebaseFirestore.instance.collection('officials').snapshots(),
+                            builder: (context, asyncSnapshot) {
+                              final doc = asyncSnapshot.data!.docs;
 
-                                  imageUrl:  'https://picsum.photos/300/30$index',
-                                  name: grampanchyatdata[index]['name'],
-                                  post: grampanchyatdata[index]['post'],
-                                  department: grampanchyatdata[index]['department'],
-                                  onCall: (){}
-
-                              );
-
-                              }),
+                              return ListView.builder(
+                                itemCount:
+                                doc.length>3
+                                    ?3
+                                    :doc.length,
+                                  itemBuilder: (contex ,index ){
+                                  final data = doc[index].data();
+                                  OfficialModel officialModel = OfficialModel.fromMap(data);
+                                  return OfficialCard(
+                              
+                                      //imageUrl:  'https://picsum.photos/300/30$index',
+                                      //name: grampanchyatdata[index]['name'],
+                                      //post: grampanchyatdata[index]['post'],
+                                      //department: grampanchyatdata[index]['department'],
+                                      officialModel:officialModel ,
+                                      onCall: (){}
+                                  );
+                                });
+                            }
+                          ),
                         )
                           ],
                         ),
