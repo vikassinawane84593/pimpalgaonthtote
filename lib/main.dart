@@ -9,6 +9,7 @@ import 'package:pimpalgaonthote/Screens/profile_Screen.dart';
 import 'package:pimpalgaonthote/Screens/timetableascreen.dart';
 import 'package:pimpalgaonthote/Screens/village_gallary.dart';
 import 'package:pimpalgaonthote/Screens/village_official.dart';
+import 'package:pimpalgaonthote/Widgets/Auth/AuthWrapper.dart';
 import 'package:pimpalgaonthote/core/Theme/apptheme.dart';
 import 'package:pimpalgaonthote/firebase_options.dart';
 import 'package:pimpalgaonthote/main.dart';

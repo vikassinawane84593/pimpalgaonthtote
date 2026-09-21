@@ -101,7 +101,7 @@ class Timetelingwidget extends StatelessWidget{
                           Padding(
                             padding: const EdgeInsets.only(bottom: 5,right: 5),
                             child: Text(
-                              '$starttime AM',
+                              '$starttime',
                               style: TextStyle(
                                   color: colors,
                                   fontWeight: FontWeight.bold,
@@ -125,7 +125,7 @@ class Timetelingwidget extends StatelessWidget{
                     Padding(
                       padding: const EdgeInsets.only(bottom: 5),
                       child: Text(
-                          ' $endtime PM',
+                          ' $endtime',
                           style: TextStyle(
                               color: colors,
                               fontWeight: FontWeight.bold,
