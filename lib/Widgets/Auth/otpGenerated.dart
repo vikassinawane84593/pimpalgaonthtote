@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:pimpalgaonthote/Screens/Auth/verifiotp.dart';
 import 'package:pimpalgaonthote/Screens/homeScreen.dart';
+import 'package:pimpalgaonthote/Widgets/Auth/verifiotp.dart';
 import 'package:pimpalgaonthote/core/Theme/Colors.dart';
 
 

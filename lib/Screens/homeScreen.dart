@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:pimpalgaonthote/Screens/Complaintscreen.dart';
 import 'package:pimpalgaonthote/Screens/contact_Screen.dart';
+import 'package:pimpalgaonthote/Screens/notisescreen.dart';
 import 'package:pimpalgaonthote/Screens/timetableascreen.dart';
 import 'package:pimpalgaonthote/Screens/village_gallary.dart';
 import 'package:pimpalgaonthote/Screens/village_official.dart';
@@ -64,6 +65,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   setState(() {
                     setState(() {
                       notificationcount=0;
+                      Navigator.push(context, MaterialPageRoute(
+                          builder: (_)=>NoticeScreen()
+                      ));
                     });
                   });
                 },

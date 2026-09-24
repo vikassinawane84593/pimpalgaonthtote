@@ -5,6 +5,7 @@ import 'package:pimpalgaonthote/Screens/Lighttimetable.dart';
 import 'package:pimpalgaonthote/Screens/contact_Screen.dart';
 import 'package:pimpalgaonthote/Screens/homeScreen.dart';
 import 'package:pimpalgaonthote/Screens/main_navigation.dart';
+import 'package:pimpalgaonthote/Screens/notisescreen.dart';
 import 'package:pimpalgaonthote/Screens/profile_Screen.dart';
 import 'package:pimpalgaonthote/Screens/timetableascreen.dart';
 import 'package:pimpalgaonthote/Screens/village_gallary.dart';
