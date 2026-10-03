@@ -6,12 +6,13 @@ class BuildTile extends StatelessWidget {
   final String  title;
   final String value;
 
+
    const BuildTile({
 
      super.key,
      required this.icon,
      required this.title,
-     required this.value
+     required this.value,
 
   });
 

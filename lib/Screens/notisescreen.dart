@@ -7,6 +7,22 @@ import 'package:pimpalgaonthote/model/notiseModel.dart';
 class NoticeScreen extends StatelessWidget {
   const NoticeScreen({super.key});
 
+  final Map<String, IconData> warningIcons = const {
+    'ग्रामसभा सूचना': Icons.groups,
+    'वीज बंद सूचना': Icons.electric_bolt,
+    'पाणीपुरवठा सूचना': Icons.water_drop,
+    'आरोग्य सूचना': Icons.health_and_safety,
+    'ग्रामपंचायत सूचना': Icons.account_balance,
+  };
+
+  final Map<String, Color> warningColors = const {
+    'ग्रामसभा सूचना': Colors.blue,
+    'वीज बंद सूचना': Colors.orange,
+    'पाणीपुरवठा सूचना': Colors.cyan,
+    'आरोग्य सूचना': Colors.red,
+    'ग्रामपंचायत सूचना': Colors.green,
+  };
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,18 +56,24 @@ class NoticeScreen extends StatelessWidget {
             );
           }
           final docs = napshot.data!.docs;
+          final lenth = docs.length;
+
 
           return ListView.builder(
+            itemCount: lenth,
               itemBuilder: (context,index){
 
                 final data = docs[index].data();
                 final modeldata = NotiseModel.fromMap(data);
+                final IconData ico = warningIcons[modeldata.type]!;
+                final Color colur = warningColors[modeldata.type]!;
 
                 return NoticeCard(
                   title: modeldata.warning,
                   description: modeldata.type,
                   date: modeldata.date,
-                  icon: Icons.campaign,
+                  icon: ico,
+                  color: colur,
                 );
 
 

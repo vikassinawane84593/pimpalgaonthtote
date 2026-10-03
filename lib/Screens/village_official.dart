@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:pimpalgaonthote/Widgets/village_official_widget.dart';
-import 'package:pimpalgaonthote/data.dart';
 import 'package:pimpalgaonthote/model/officialmodel.dart';
 
 class Vilageofficial extends StatefulWidget {
@@ -12,6 +11,9 @@ class Vilageofficial extends StatefulWidget {
 }
 
 class _VilageofficialState extends State<Vilageofficial> {
+
+  String _serchText = '';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,7 +21,7 @@ class _VilageofficialState extends State<Vilageofficial> {
         appBar: AppBar(
           title: Column(
             children: [
-              Text('ग्राम अधिकारीक'),
+              Text('ग्राम अधिकारी'),
 
               Text(
                 ' ग्रामपंचायत पिंपळगाव थोटे',
@@ -61,6 +63,12 @@ class _VilageofficialState extends State<Vilageofficial> {
                       prefixIcon: Icon(Icons.search),
                     ),
 
+                    onChanged: (value){
+                      setState(() {
+                        _serchText = value;
+                      });
+                    },
+
 
 
                   ),
@@ -78,13 +86,49 @@ class _VilageofficialState extends State<Vilageofficial> {
                 child: StreamBuilder(
                   stream: FirebaseFirestore.instance.collection('officials').snapshots(),
                   builder: (context, asyncSnapshot) {
-                    final doc = asyncSnapshot.data!.docs;
 
+                    if (asyncSnapshot.hasError){
+                      return Center(
+                        child: Text('dont find contact'),
+                      );
+                    }
+
+                    if(asyncSnapshot.connectionState==ConnectionState.waiting){
+
+                      return Center(
+                        child:CircularProgressIndicator(),
+                      );
+                    }
+
+
+                    final allDoc = asyncSnapshot.data!.docs;
+
+                    final allModelData = allDoc.map((doc){
+                      final data = doc.data();
+
+                      return OfficialModel.fromMap(data);
+                    }).toList();
+
+
+                    final searcheddata = allModelData.where((doc){
+
+                      final name = doc.name.toUpperCase();
+                      final post = doc.post.toUpperCase();
+
+                      return name.contains(_serchText.toUpperCase()) || post.contains(_serchText.toUpperCase());
+
+
+                    }).toList();
+
+                    if (searcheddata.isEmpty  ) {
+                      return const Center(
+                        child: Text('कोणताही ग्राम अधिकारी सापडला नाही',),
+                      );
+                    }
                     return ListView.builder(
-                        itemCount: doc.length,
+                        itemCount: searcheddata.length,
                         itemBuilder: (contex ,index ){
-                          final data = doc[index].data();
-                          OfficialModel officermodel = OfficialModel.fromMap(data);
+                          final officermodel = searcheddata[index];
                           return OfficialCard(
                     
                               //imageUrl:  'https://picsum.photos/300/30$index',

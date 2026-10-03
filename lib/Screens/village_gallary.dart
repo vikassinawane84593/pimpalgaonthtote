@@ -4,11 +4,20 @@ import 'package:pimpalgaonthote/Screens/full_imageScreen.dart';
 import 'package:pimpalgaonthote/Widgets/village_gallary_card.dart';
 import 'package:pimpalgaonthote/model/gallerymodel.dart';
 
-class VillageGallary extends StatelessWidget {
+class VillageGallary extends StatefulWidget {
   const VillageGallary({super.key});
 
   @override
+  State<VillageGallary> createState() => _VillageGallaryState();
+}
+
+class _VillageGallaryState extends State<VillageGallary> {
+
+  String serchText = '';
+
+  @override
   Widget build(BuildContext context) {
+
     return Scaffold(
 
         appBar: AppBar(
@@ -43,6 +52,14 @@ class VillageGallary extends StatelessWidget {
                       hintText: 'ग्राम दर्शन शोधाा...',
                       prefixIcon: Icon(Icons.search),
                     ),
+                    onChanged: (value){
+
+                      setState(() {
+                        serchText = value;
+                      });
+
+
+                    },
                   ),
                 ),
               ),
@@ -78,6 +95,30 @@ class VillageGallary extends StatelessWidget {
 
                       final doc = snapshot.data!.docs;
 
+                      final modeldata = doc.map((a){
+                        final data = a.data();
+
+                        return ImageModel.fromMap(data);
+
+                      }).toList();
+
+                      final List<ImageModel> data = modeldata.where((a){
+
+                        final name = a.name.toUpperCase();
+                        final caption = a.caption.toUpperCase();
+
+                        return
+                          name.contains(serchText.toUpperCase())
+                              || caption.contains(serchText.toUpperCase()
+                          );
+                      }).toList();
+
+                      if(data.isEmpty){
+                        return Center(
+                          child:Text('No image Avaible'),
+                        );
+                      }
+
 
 
 
@@ -97,20 +138,21 @@ class VillageGallary extends StatelessWidget {
 
                           itemBuilder: (context , index){
 
-                            final data  = doc[index].data();
-                            final model = ImageModel.fromMap(data);
+                            final datas  = data[index];
+
+
 
 
                             return Villagegallarycard(
-                              imageModel: model,
+                              imageModel: datas,
 
                               onTap: (){
                                 Navigator.push(
                                     context, MaterialPageRoute(
 
                                     builder: (_)=>FullImageScreen(
-                                        imageUrl: model.imageUrl,//'https://picsum.photos/300/30$index',
-                                        Title: model.caption)
+                                        imageUrl: datas.imageUrl,//'https://picsum.photos/300/30$index',
+                                        Title: datas.caption)
 
                                 )
                                 );
